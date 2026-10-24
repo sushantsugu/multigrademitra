@@ -1,0 +1,6 @@
+{
+  "name": "MultiGrade Mitra",
+  "description": "AI-powered education and teaching platform for Class 12 and undergraduate programs (B.Tech, B.Sc, B.Com, etc.), featuring smart concept explanations, lesson planning, multigrade learning, and document-to-study resources.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

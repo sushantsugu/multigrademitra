@@ -1,0 +1,249 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+@layer base {
+  :root {
+    --color-navy: #14263D;
+    --color-indigo: #4F46E5;
+    --color-indigo-deep: #3730A3;
+    --color-indigo-soft: #EEF2FF;
+    --color-bg: #F6F8FC;
+    --color-surface: #FFFFFF;
+    --color-text-primary: #202939;
+    --color-text-secondary: #687386;
+    --color-border: #E4E8F0;
+    --color-success: #16845B;
+    --color-success-soft: #EAF7F0;
+    --color-amber: #F0B44D;
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --color-bg: #080B12;
+    --color-surface: #111827;
+    --color-text-primary: #EEF4FF;
+    --color-text-secondary: #A0AFC2;
+    --color-border: #25364B;
+    --color-indigo: #32B8F4;
+    --color-indigo-deep: #1389C7;
+    --color-indigo-soft: #132A41;
+    --color-navy: #080B12;
+    --color-rose: #FF4F9A;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Manrope', 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  html[data-theme='dark'] body {
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    transition: background-color 180ms ease, color 180ms ease;
+  }
+}
+
+/* Keep the existing light-mode utility styles while remapping shared surfaces in dark mode. */
+html[data-theme='dark'] [class*="bg-[#F6F8FC]"],
+html[data-theme='dark'] [class*="bg-white"] {
+  background-color: var(--color-surface);
+}
+
+html[data-theme='dark'] [class~="bg-slate-50"],
+html[data-theme='dark'] [class~="bg-slate-100"],
+html[data-theme='dark'] [class~="bg-gray-50"],
+html[data-theme='dark'] [class~="bg-gray-100"] {
+  background-color: #172235;
+}
+
+html[data-theme='dark'] [class*="bg-[#EEF2FF]"],
+html[data-theme='dark'] [class~="bg-indigo-50"],
+html[data-theme='dark'] [class~="bg-indigo-100"] {
+  background-color: #132A41;
+}
+
+html[data-theme='dark'] [class*="bg-indigo-700"] {
+  background-color: #0F6EA1;
+}
+
+html[data-theme='dark'] [class*="bg-indigo-600"] {
+  background-color: #1389C7;
+}
+
+html[data-theme='dark'] [class*="bg-indigo-500"] {
+  background-color: #32B8F4;
+}
+
+html[data-theme='dark'] [class*="text-[#202939]"],
+html[data-theme='dark'] [class*="text-[#14263D]"],
+html[data-theme='dark'] [class*="text-slate-900"],
+html[data-theme='dark'] [class*="text-slate-800"],
+html[data-theme='dark'] [class*="text-slate-700"],
+html[data-theme='dark'] [class*="text-gray-900"],
+html[data-theme='dark'] [class*="text-gray-800"],
+html[data-theme='dark'] [class*="text-gray-700"] {
+  color: var(--color-text-primary);
+}
+
+html[data-theme='dark'] [class*="text-[#687386]"],
+html[data-theme='dark'] [class*="text-slate-600"],
+html[data-theme='dark'] [class*="text-slate-500"],
+html[data-theme='dark'] [class*="text-slate-400"],
+html[data-theme='dark'] [class*="text-gray-600"],
+html[data-theme='dark'] [class*="text-gray-500"],
+html[data-theme='dark'] [class*="text-gray-400"] {
+  color: var(--color-text-secondary);
+}
+
+html[data-theme='dark'] [class*="text-[#4F46E5]"],
+html[data-theme='dark'] [class*="text-indigo-700"],
+html[data-theme='dark'] [class*="text-indigo-600"],
+html[data-theme='dark'] [class*="text-indigo-500"] {
+  color: #32B8F4;
+}
+
+html[data-theme='dark'] [class*="border-[#E4E8F0]"],
+html[data-theme='dark'] [class*="border-slate-100"],
+html[data-theme='dark'] [class*="border-slate-200"],
+html[data-theme='dark'] [class*="border-gray-100"],
+html[data-theme='dark'] [class*="border-gray-200"],
+html[data-theme='dark'] [class*="border-indigo-100"],
+html[data-theme='dark'] [class*="border-indigo-200"] {
+  border-color: var(--color-border);
+}
+
+html[data-theme='dark'] [class*="bg-emerald-50"] {
+  background-color: #123127;
+}
+
+html[data-theme='dark'] [class*="text-emerald-700"] {
+  color: #71D9A7;
+}
+
+html[data-theme='dark'] [class*="border-emerald-200"] {
+  border-color: #24533F;
+}
+
+html[data-theme='dark'] [class*="bg-red-200"] {
+  background-color: #3A1B2A;
+}
+
+html[data-theme='dark'] [class*="text-red-700"] {
+  color: #FF8CB8;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 2.5rem;
+  padding: 0 0.85rem;
+  border: 1px solid #DCE4EE;
+  border-radius: 0.75rem;
+  background: #F8FAFC;
+  color: #14263D;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
+}
+
+.theme-switch-track {
+  display: inline-flex;
+  align-items: center;
+  width: 2rem;
+  height: 1.15rem;
+  padding: 0.15rem;
+  border-radius: 999px;
+  background: #CBD5E1;
+  transition: background-color 150ms ease;
+}
+
+.theme-switch-thumb {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 999px;
+  background: white;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 20%);
+  transition: transform 150ms ease;
+}
+
+.theme-switch-track.is-active {
+  background: #1389C7;
+}
+
+.theme-switch-track.is-active .theme-switch-thumb {
+  transform: translateX(0.85rem);
+}
+
+.theme-toggle:hover {
+  border-color: #32B8F4;
+  box-shadow: 0 0 0 3px rgb(50 184 244 / 12%);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid #FF4F9A;
+  outline-offset: 2px;
+}
+
+html[data-theme='dark'] .theme-toggle {
+  border-color: #35465B;
+  background: #172235;
+  color: #FF78AE;
+}
+
+html[data-theme='dark'] .theme-switch-track {
+  background: #536278;
+}
+
+html[data-theme='dark'] .theme-switch-track.is-active {
+  background: #FF4F9A;
+}
+
+html[data-theme='dark'] .theme-toggle:hover {
+  border-color: #FF4F9A;
+  box-shadow: 0 0 0 3px rgb(255 79 154 / 14%);
+}
+
+/* Custom scrollbars for clean UI */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+html[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: #35465B;
+}
+
+html[data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
+  background: #32B8F4;
+}
+
+/* Print styling for direct printing fallback alongside server PDF */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
